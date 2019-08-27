@@ -1,0 +1,2 @@
+light    dark	darker	darkest	crimson
+c9c8c9, 7d7d7d, 393737, 191818, 9b1427
