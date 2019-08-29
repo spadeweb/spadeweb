@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<!--
+	Fractal by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>SPADE Misc</title>
+        <link rel="apple-touch-icon" href="images/favicon.png">
+        <link rel="shortcut icon" href="images/favicon.png">
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/comp-misc.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload" style=" overflow: hidden;">
+
+        <div w3-include-html="navbar.html"></div>
+        
+		<!-- Header -->
+        <header id="header">                
+            <div class="container-fluid" style="height: 100%; padding: 5%;">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="list-group" id="list-tab" role="tablist">
+                          <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">WebPush</a>
+                          <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">...</a>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="tab-content" id="nav-tabContent" style="color:white;">
+                            <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                                Proof-of-concept tool for assisting website developers/owners create personalised push-notifications for their followers. Simply enter your website URL and the WebPush system will extract all text from the website and generate a set of recommended notifications to push.
+                                <br><br>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="basic-url">Your website URL:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon3">https://</span>
+                                            </div>
+                                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"
+                                                   placeholder="example.com">
+                                        </div>
+                                        <label class="error" for="basic-rul" id="url_error">This field is required</label>
+                                    </div>
+                                    <button id="web-push-btn" type="submit" class="btn">Submit</button>
+                                </form>
+                                
+                            </div>
+                            
+                            <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                                ...
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        
+        <!-- WeAreUs Modal
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content" style="background-image: url('images/cards_opaque.png'); background-repeat: repeat">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button id="closeModal" type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" style="background: white;">
+                <div id="weareus_features" w3-include-html="features_weareus.html" style="display: none;"></div>
+                <div id="clickbait_features" w3-include-html="features_clickbait.html" style="display: none;"></div>
+                <div id="weareus_features" w3-include-html="statistics_weareus.html" style="display: none;"></div>
+              </div>
+              <div class="modal-footer">
+              </div>
+            </div>
+          </div>
+        </div>-->
+        
+        <!--<div w3-include-html="index_old.html"></div>-->
+
+		<!-- Scripts -->
+			<!--<script src="assets/js/jquery.min.js"></script>-->
+        
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+            <script src="assets/js/include.js"></script>
+			<script src="assets/js/comp-misc.js"></script>
+        
+        <script>
+            
+            /*$('#exampleModal').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) // Button that triggered the modal
+              var datasetName = button.data('set') // Extract info from data-* attributes
+              var mode = button.data('mode')
+              // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+              // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+              var modal = $(this)
+              modal.find('.modal-title').text(mode +' of ' + datasetName)
+                
+              $('#'+datasetName.toLowerCase()+'_'+mode.toLowerCase()).show();
+                console.log('#'+datasetName.toLowerCase()+'_'+mode.toLowerCase());
+              //modal.find('.modal-body input').val(recipient)
+            })
+            
+            $("#closeModal").click(function () {
+                $(".modal-body").children().hide();
+                $("#exampleModal").modal('hide');
+            });*/
+            
+            $(function() {
+                $('.error').hide();
+                $("#web-push-btn").click(function() {
+                  // validate and process form here
+                    console.log('web push submitted.')
+                    var name = $("input#basic-url").val();
+                    if (name == "") {
+                        $("label#url_error").show();
+                        $("input#basic-url").focus();
+                        return false;
+                    }
+                    
+                    
+                    
+                    console.log(name);
+                    dataString = "name="+name
+                    //alert (dataString);return false;
+                    /*$.ajax({
+                        type: "POST",
+                        url: "bin/process.php",
+                        data: dataString,
+                        success: function() {
+                          console.log("success")
+                        }
+                    });*/
+                    $("input#basic-url").val('');
+                    $('.error').hide();
+                    return false;
+                });
+              });
+        </script>
+        
+
+	</body>
+</html>
