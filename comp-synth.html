@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<!--
+	Fractal by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>SPADE Synthesis</title>
+        <link rel="apple-touch-icon" href="images/favicon.png">
+        <link rel="shortcut icon" href="images/favicon.png">
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/comp-synth.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload" style=" overflow: hidden;">
+
+        <div w3-include-html="navbar.html"></div>
+        
+		<!-- Header -->
+        <header id="header">                
+            <div class="container-fluid" style="height: 100%; padding: 5%;">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="list-group" id="list-tab" role="tablist">
+                          <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">WeAreUs</a>
+                          <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">NAbs</a>
+                          <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Clickbait</a>
+                          <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Kieran</a>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                                  <!--Tabs - existing synth data sets, form for creating synth data set -->
+                                
+                                <div class="accordion" id="accordionExample">
+                                    <!-- Card one -->
+                                  <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                      <h2 class="mb-0">
+                                        <button class="btn" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="color: #393737 !important">
+                                          Synthetic Data Sets
+                                        </button>
+                                      </h2>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                      <div class="card-body">
+                                        The following is a list of synthetic data sets, generated using the selected real data set. Click on a version to see more detail on the generated data, summary statistics, the parameters used for generation and the current benchmarks achieved on the data set.
+                                        <br><br>   
+                                        <button type="button" class="btn" style="background-color: #9b1427 !important;">
+                                            28-08-2019
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                    
+                                    <!-- Card two -->
+                                  <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                      <h2 class="mb-0">
+                                        <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"  style="color: #393737 !important">
+                                          Create Synthetic
+                                        </button>
+                                      </h2>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                      <div class="card-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                                The NAbs data set is a synthetically created notification data set paired with user contexts. The Friends &amp; Family data set, obtained and released by the MIT Media Lab, was used to </div>
+                            <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+                               
+                            </div>
+                            <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        
+        <!-- WeAreUs Modal-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content" style="background-image: url('images/cards_opaque.png'); background-repeat: repeat">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button id="closeModal" type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" style="background: white;">
+                <div id="weareus_features" w3-include-html="features_weareus.html" style="display: none;"></div>
+                <div id="clickbait_features" w3-include-html="features_clickbait.html" style="display: none;"></div>
+                <div id="weareus_features" w3-include-html="statistics_weareus.html" style="display: none;"></div>
+              </div>
+              <div class="modal-footer">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!--<div w3-include-html="index_old.html"></div>-->
+
+		<!-- Scripts -->
+			<!--<script src="assets/js/jquery.min.js"></script>-->
+        
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+            <script src="assets/js/include.js"></script>
+			<script src="assets/js/comp-synth.js"></script>
+        
+        <script>
+            
+            $('#exampleModal').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) // Button that triggered the modal
+              var datasetName = button.data('set') // Extract info from data-* attributes
+              var mode = button.data('mode')
+              // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+              // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+              var modal = $(this)
+              modal.find('.modal-title').text(mode +' of ' + datasetName)
+                
+              $('#'+datasetName.toLowerCase()+'_'+mode.toLowerCase()).show();
+                console.log('#'+datasetName.toLowerCase()+'_'+mode.toLowerCase());
+              //modal.find('.modal-body input').val(recipient)
+            })
+            
+            $("#closeModal").click(function () {
+                $(".modal-body").children().hide();
+                $("#exampleModal").modal('hide');
+            });
+        </script>
+        
+
+	</body>
+</html>
