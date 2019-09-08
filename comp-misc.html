@@ -16,23 +16,23 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
-	<body class="is-preload" style=" overflow: hidden;">
+	<body class="is-preload" style=" overflow: scroll;">
 
         <div w3-include-html="navbar.html"></div>
         
 		<!-- Header -->
         <header id="header">                
-            <div class="container-fluid" style="height: 100%; padding: 5%;">
+            <div class="container-fluid" style="min-height: 100vh; padding: 5%;">
                 <div class="row">
                     <div class="col-4">
                         <div class="list-group" id="list-tab" role="tablist">
-                          <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">WebPush</a>
-                          <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">...</a>
+                          <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">EmPushy WebCrawler</a>
+                          <a class="list-group-item list-group-item-action active" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">EmPushy Generator</a>
                         </div>
                     </div>
                     <div class="col-8">
                         <div class="tab-content" id="nav-tabContent" style="color:white;">
-                            <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                            <div class="tab-pane fade show" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                                 Proof-of-concept tool for assisting website developers/owners create personalised push-notifications for their followers. Simply enter your website URL and the WebPush system will extract all text from the website and generate a set of recommended notifications to push.
                                 <br><br>
                                 <form>
@@ -52,8 +52,174 @@
                                 
                             </div>
                             
-                            <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-                                ...
+                            <!--Generator-->
+                            <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-5" style="margin: auto;">
+                                            <div class="card mb-3" style="max-width: 18rem;">
+                                                <div class="card-header" style="color: black !important;">Current Context</div>
+                                                <div class="card-body" style="color: black; padding: 0.5rem; background-image: url(./images/cards_opaque.png) !important; background-repeat: repeat !important;">
+                                                    <p style="font-size: smaller">
+                                                        Day: Monday 
+                                                        <br>
+                                                        Time: Morning
+                                                        <br>
+                                                        Unlocked: 10
+                                                        <br>
+                                                        Usage: 3 mins
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5" style="margin: auto;">
+                                            <div class="card mb-3" style="max-width: 18rem;">
+                                                <div class="card-header" style="color: black !important;">New <strong id="appPackageCurrent"></strong> Notification!</div>
+                                                <div class="card-body" style="color: black; padding: 0.5rem; background-image: url(./images/cards_opaque.png) !important; background-repeat: repeat !important;">
+                                                    <p style="font-size: smaller">
+                                                        Category: <strong id="categoryCurrent"></strong> 
+                                                        <br>
+                                                        Subject: <strong id="subjectCurrent"></strong> 
+                                                        <br>
+                                                        Priority: <strong id="priorityCurrent"></strong> 
+                                                        <br>
+                                                        Led: <strong id="ledARGBCurrent"></strong> 
+                                                        <br>
+                                                        Visibility: <strong id="visibilityCurrent"></strong> 
+                                                        <br>
+                                                        Vibrate: <strong id="vibrateCurrent"></strong> 
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2" style="margin: auto;">
+                                            <button class="btn" onclick="changeContext()">Change Context</button>
+                                            <button class="btn" onclick="evaluateNotification()">Push</button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <div class="row"  style="text-align: center">
+                                                <div class="col-md">
+                                                    <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                                                        <button class="btn active" type="button" data-toggle="collapse" data-target="#manual-view" aria-expanded="false" aria-controls="manual-view">Manual</button>
+                                                        <button class="btn" type="button" data-toggle="collapse" data-target="#empushy-view" aria-expanded="false" aria-controls="empushy-view" onclick="generateNotification()">EmPushy</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-md">
+                                                    <div class="collapse show active" id="manual-view">
+                                                        <div class="card card-body" style="color: black; background-image: url(./images/cards_opaque.png) !important; background-repeat: repeat !important;">
+                                                            
+                                                            <!--form gen-->
+                                                            <div class="row">
+                                                                <div class="col-md-4" style="text-align: right;">
+                                                                    <strong style="color:black">App</strong>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <select id="appPackageSelect" class="form-control form-control-sm" onChange="setNotification(this);">
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4" style="text-align: right;">
+                                                                    <strong style="color:black">Category</strong>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <select id="categorySelect" class="form-control form-control-sm" onChange="setNotification(this);">
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4" style="text-align: right;">
+                                                                    <strong style="color:black">Subject</strong>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <select id="subjectSelect" class="form-control form-control-sm" onChange="setNotification(this);">
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4" style="text-align: right;">
+                                                                    <strong style="color:black">Priority</strong>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <select id="prioritySelect" class="form-control form-control-sm" onChange="setNotification(this);">
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4" style="text-align: right;">
+                                                                    <strong style="color:black">LED Color</strong>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <select id="ledARGBSelect" class="form-control form-control-sm" onChange="setNotification(this);">
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4" style="text-align: right;">
+                                                                    <strong style="color:black">Visibility</strong>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <select id="visibilitySelect" class="form-control form-control-sm" onChange="setNotification(this);">
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4" style="text-align: right;">
+                                                                    <strong style="color:black">Vibrate</strong>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <select id="vibrateSelect" class="form-control form-control-sm" onChange="setNotification(this);">
+                                                                    </select>
+                                                                </div>
+                                                            </div> 
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="col-md" style="text-align: center;">
+                                                                    <button class="btn" style="background: black;" onclick="setNotification()">Set Notification</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="collapse" id="empushy-view">
+                                                        <div class="card card-body" style="color: black; background-image: url(./images/cards_opaque.png) !important; background-repeat: repeat !important;">
+                                                            Empushy notifications
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="row"  style="text-align: center">
+                                                <div class="col-md">
+                                                    <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                                                        <button class="btn active" type="button" data-toggle="collapse" data-target="#app-view" aria-expanded="false" aria-controls="app-view">App</button>
+                                                        <button class="btn" type="button" data-toggle="collapse" data-target="#category-view" aria-expanded="false" aria-controls="category-view">Category</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-md">
+                                                    <div class="collapse show active" id="app-view">
+                                                        <div class="card card-body" style="color: black; background-image: url(./images/cards_opaque.png) !important; background-repeat: repeat !important;">
+                                                            app viz
+                                                        </div>
+                                                    </div>
+                                                    <div class="collapse" id="category-view">
+                                                        <div class="card card-body" style="color: black; background-image: url(./images/cards_opaque.png) !important; background-repeat: repeat !important;">
+                                                            category viz
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             
                         </div>
@@ -97,6 +263,8 @@
 			<script src="assets/js/util.js"></script>
             <script src="assets/js/include.js"></script>
 			<script src="assets/js/comp-misc.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+            <script src="assets/js/comp-misc-empushy-generate.js"></script>
         
         <script>
             
@@ -118,7 +286,6 @@
                 $(".modal-body").children().hide();
                 $("#exampleModal").modal('hide');
             });*/
-            
             $(function() {
                 $('.error').hide();
                 $("#web-push-btn").click(function() {

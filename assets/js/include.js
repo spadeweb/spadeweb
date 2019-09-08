@@ -16,6 +16,7 @@ function includeHTML() {
           /* Remove the attribute, and call this function once more: */
           elmnt.removeAttribute("w3-include-html");
           includeHTML();
+          
         }
       } 
       xhttp.open("GET", file, true);
@@ -25,3 +26,12 @@ function includeHTML() {
     }
   }
 }
+
+$(window).scroll(function(){
+    var scroll = $(window).scrollTop();
+    if(scroll < 50){
+        $('.fixed-top').css('cssText', 'background: transparent !important');
+    } else{
+        $('.fixed-top').css('cssText', 'background: black !important');
+    }
+});

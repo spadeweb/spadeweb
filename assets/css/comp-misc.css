@@ -32,8 +32,16 @@ footer, header, hgroup, menu, nav, section {
   opacity: 0.4 !important; /* Firefox */
 }
 
+::-webkit-scrollbar {
+    display: none !important;
+}
+
 .error {
     color: #9b1427 !important;
+}
+
+.form-control {
+    color: black !important;
 }
 
 
@@ -3671,7 +3679,7 @@ input, select, textarea {
 		background-position: top left, center center;
 		background-attachment: fixed, fixed;
 		background-size: auto, cover;
-		height: 100vh;
+		height: 100%;
 		min-height: 35em;
 	}
 
