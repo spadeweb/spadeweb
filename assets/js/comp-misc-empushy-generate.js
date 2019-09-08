@@ -82,5 +82,5 @@ function generateNotification(){
 
 // 3. API call to convert prediction back to string values to populate container
 
-loadModel();
+// loadModel();
 
