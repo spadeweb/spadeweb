@@ -54,8 +54,8 @@ hr {
     color: #9b1427 !important;
 }
 
-.form-control {
-    color: black !important;
+#header input, #header select, #header textarea {
+    color: white!important;
 }
 
 

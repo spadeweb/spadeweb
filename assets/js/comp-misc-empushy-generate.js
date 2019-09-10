@@ -71,7 +71,7 @@ function setContext(){
     var unlocks = contexts[currentIndex].unlockCount_prev2.toFixed()
     $('#unlocksCurrent').html(unlocks>=0?unlocks+" times":'unknown')
     $('#unlocksCurrent').css('color', 'white')
-    var usage =(contexts[currentIndex].phoneUsageTime_prev2/(1000*60)).toFixed(5)
+    var usage =(contexts[currentIndex].phoneUsageTime_prev2/(1000*60)).toFixed(2)
     $('#usageCurrent').html(usage>=0?usage+" mins":'unknown')
     $('#usageCurrent').css('color', 'white')
     var clickCount = contexts[currentIndex].clickCount_prev2.toFixed(0)
@@ -116,7 +116,11 @@ function setNotification(sel){
     notif_value = sel.options[sel.selectedIndex].text
     elem = document.getElementById(notif_element)
     elem.innerHTML = notif_value.replace('com.','').replace('.android.', ' ')
-    elem.setAttribute("style", "color: white;")
+    if(notif_element!="appPackageCurrent")
+        elem.setAttribute("style", "color: white;")
+    else{
+        elem.setAttribute("style", "color: black; font-size:medium;") 
+    }
     if(notif_element=='ledARGBCurrent')
         $('#notificationCard').css('border-color', notif_value!='unknown'?notif_value:'transparent')
 }
