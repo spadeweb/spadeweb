@@ -55,48 +55,84 @@
                             <!--Generator-->
                             <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
                                 <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-5" style="margin: auto;">
-                                            <div class="card mb-3" style="max-width: 18rem;">
-                                                <div class="card-header" style="color: black !important;">Current Context</div>
-                                                <div class="card-body" style="color: black; padding: 0.5rem; background-image: url(./images/cards_opaque.png) !important; background-repeat: repeat !important;">
-                                                    <p style="font-size: smaller">
-                                                        Day: Monday 
-                                                        <br>
-                                                        Time: Morning
-                                                        <br>
-                                                        Unlocked: 10
-                                                        <br>
-                                                        Usage: 3 mins
-                                                    </p>
+                                    <div class="row" style="text-align:center">
+                                        <div class="col-md-4">
+                                            <div class="card mb-3" style="max-width: 18rem; background-color: transparent !important;">
+                                                <div class="card-body" style="color: #7d7d7d; padding: 0.5rem;">
+                                                    <div class="row" style="font-size:smaller;">
+                                                        <div class="col-md" style="text-align:center;">
+                                                            <img src="./assets/icons/calendar.png" alt="Smiley face" data-toggle="tooltip" data-placement="left" title="Day and time">
+                                                            <i id="dayCurrent" style="margin-right:1%; margin-top:auto;"></i><i id="timeCurrent" style="margin-right:1%; margin-top:auto;"></i>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row" style="font-size:smaller;">
+                                                        <div class="col-md" style="text-align:center;">
+                                                            <img src="./assets/icons/unlock.png" alt="Smiley face" style="padding-right:5%;padding-bottom:2%" data-toggle="tooltip" data-placement="left" title="Device unlock count (past 2 hours)"><i id="unlocksCurrent"></i>
+                                                        </div>
+                                                        <div class="col-md" style="text-align:center;">
+                                                            <img src="./assets/icons/stopwatch.png" alt="Smiley face" style="padding-right:5%;padding-bottom:2%" data-toggle="tooltip" data-placement="right" title="Time spent on device (past 2 hours)"><i id="usageCurrent"></i>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row" style="font-size:smaller;">
+                                                        <div class="col-md" style="text-align:center;">
+                                                            <img src="./assets/icons/tap.png" alt="Smiley face" style="padding-right:5%;padding-bottom:2%"  data-toggle="tooltip" data-placement="left" title="Number of times screen touched (past 2 hours)"><i id="interactionsCurrent"></i>
+                                                        </div>
+                                                        <div class="col-md" style="text-align:center;">
+                                                            <img src="./assets/icons/launched.png" alt="Smiley face" style="padding-right:5%;padding-bottom:2%" data-toggle="tooltip" data-placement="right" title="Number of unique apps launched (past 2 hours)"><i id="launchedCurrent"></i>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-5" style="margin: auto;">
-                                            <div class="card mb-3" style="max-width: 18rem;">
-                                                <div class="card-header" style="color: black !important;">New <strong id="appPackageCurrent"></strong> Notification!</div>
-                                                <div class="card-body" style="color: black; padding: 0.5rem; background-image: url(./images/cards_opaque.png) !important; background-repeat: repeat !important;">
-                                                    <p style="font-size: smaller">
-                                                        Category: <strong id="categoryCurrent"></strong> 
+                                        <div class="col-md-6" style="text-align:center">
+                                            <div class="card mb-6" style="18rem; background: transparent!important;">
+                                                <div class="card-header" style="background: #c9c8c9; color: black !important; font-size: smaller;">New notification from <strong id="appPackageCurrent"  data-toggle="tooltip" data-placement="top" title="The app from which the notification came"></strong>!</div>
+                                                <div id="notificationCard" class="card-body" style="color: black; padding: 0.5rem; color:#7d7d7d; font-size:smaller; border-color: #7d7d7d; border-style: solid; border-width: 1px; border-top-style: none;">
+                                                        <div class="row" style="font-size:smaller;">
+                                                            <div class="col-md">
+                                                                <img src="./assets/icons/notification.png" alt="Smiley face" data-toggle="tooltip" data-placement="left" title="Category set by the app" style="padding-right:5%">
+                                                                <i id="categoryCurrent"></i>
+                                                            </div>
+                                                            <div class="col-md-7">
+                                                                <img src="./assets/icons/subject.png" alt="Smiley face" data-toggle="tooltip" data-placement="right" title="Subject inferred from content" style="padding-right:5%">
+                                                                <i id="subjectCurrent"></i>
+                                                            </div>
+                                                        </div>
                                                         <br>
-                                                        Subject: <strong id="subjectCurrent"></strong> 
+                                                        <div class="row">
+                                                            <div class="col-md">
+                                                                <img src="./assets/icons/priority.png" alt="Smiley face" data-toggle="tooltip" data-placement="left" title="Priority set by the app" style="padding-right:5%">
+                                                                <i id="priorityCurrent"></i>
+                                                            </div>
+                                                            <div class="col-md-7">
+                                                                <img src="./assets/icons/led.png" alt="Smiley face" data-toggle="tooltip" data-placement="right" title="Color LED light flashes on delivery" style="padding-right:5%">
+                                                                <i id="ledARGBCurrent"></i>
+                                                            </div>
+                                                        </div>
                                                         <br>
-                                                        Priority: <strong id="priorityCurrent"></strong> 
-                                                        <br>
-                                                        Led: <strong id="ledARGBCurrent"></strong> 
-                                                        <br>
-                                                        Visibility: <strong id="visibilityCurrent"></strong> 
-                                                        <br>
-                                                        Vibrate: <strong id="vibrateCurrent"></strong> 
-                                                    </p>
+                                                        <div class="row">
+                                                            <div class="col-md">
+                                                                <img src="./assets/icons/visibility.png" alt="Smiley face" data-toggle="tooltip" data-placement="left" title="Visibility level set by the app" style="padding-right:5%">
+                                                                <i id="visibilityCurrent"></i>
+                                                            </div>
+                                                            <div class="col-md-7">
+                                                                <img src="./assets/icons/vibration.png" alt="Smiley face" data-toggle="tooltip" data-placement="right" title="Vibration pattern on delivery" style="padding-right:5%">
+                                                                <i id="vibrateCurrent"></i>
+                                                            </div>
+                                                        </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-2" style="margin: auto;">
-                                            <button class="btn" onclick="changeContext()">Change Context</button>
-                                            <button class="btn" onclick="evaluateNotification()">Push</button>
+                                            <button class="btn" onclick="randomPair()">Random Pair</button>
+                                            <button class="btn" onclick="evaluateNotification()" data-toggle="modal" data-target=".bd-example-modal-sm">Push</button>
                                         </div>
                                     </div>
+                                    
+                                    <hr/>
+                                    
                                     <div class="row">
                                         <div class="col-md">
                                             <div class="row"  style="text-align: center">
@@ -177,12 +213,6 @@
                                                                     </select>
                                                                 </div>
                                                             </div> 
-                                                            <br>
-                                                            <div class="row">
-                                                                <div class="col-md" style="text-align: center;">
-                                                                    <button class="btn" style="background: black;" onclick="setNotification()">Set Notification</button>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="collapse" id="empushy-view">
@@ -227,6 +257,22 @@
                 </div>
             </div>
         </header>
+
+        <!-- Push result -->
+        <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm" style="max-width: 15%">
+            <div class="modal-content">
+                <div id="resultBackground" class="component" style="padding: 5%;">
+                    <div class="row" style="text-align: center;">
+                        <div class="col-md">
+                            <strong id="openSuccess" style="display: none; color: white;">Notification Opened</strong>
+                            <strong id="openFail" style="display: none; color: white;">Notification Dismissed</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
         
         
         <!-- WeAreUs Modal
@@ -257,6 +303,7 @@
         
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>

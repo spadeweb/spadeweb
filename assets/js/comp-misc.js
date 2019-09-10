@@ -7,6 +7,7 @@
 (function($) {
 
     includeHTML();
+    $('[data-toggle="tooltip"]').tooltip()
     
 	var	$window = $(window),
 		$body = $('body');

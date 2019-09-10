@@ -1,10 +1,16 @@
 var model = null;
+var contexts = []
+var notifications = []
+var currentIndex = 0
+var custom = false;
+
+var numToDay = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
 async function loadModel() {
     model = await tf.loadLayersModel('./assets/models/model.json');
     console.log('Model loaded.');
     
-    const input = tf.tensor2d([[-1.6409057e+00,  5.1516259e-01, -5.8204377e-01,  1.2617071e+00,
+    /*const input = tf.tensor2d([[-1.6409057e+00,  5.1516259e-01, -5.8204377e-01,  1.2617071e+00,
          1.4994451e-01,  1.1548576e+00,  1.1907161e+00, -1.7465304e+00,
          5.3549206e-01,  2.3530171e+00, -5.0620306e-01, -1.1069959e+00,
         -1.5593980e-01,  1.6317743e+00,  2.2143188e-01, -7.4718155e-02,
@@ -23,48 +29,120 @@ async function loadModel() {
          0.0000000e+00,  0.0000000e+00,  0.0000000e+00,  0.0000000e+00,
          1.0000000e+00,  0.0000000e+00,  1.0000000e+00,  0.0000000e+00,
          0.0000000e+00,  0.0000000e+00,  0.0000000e+00,  0.0000000e+00,
-         0.0000000e+00]]);
+         0.0000000e+00]]);*/
     
     // Get the highest confidence prediction from our model
-    const result = model.predict(input);
-    console.log(Array.from(result.dataSync()));
+    //const result = model.predict(input);
+    // console.log(Array.from(result.dataSync()));
 }
 
-fetch("./assets/data/feature_values.json")
+function loadData(){
+    fetch("./assets/data/feature_values.json")
     .then(res => res.json())
     .then(data => setFeatureValues(data));
+    
+    fetch("./assets/data/contexts.json")
+    .then(res => res.json())
+    .then(data => setContextData(data));
+}
 
+function setContextData(data){
+    contexts = data
+    
+    // then get notification data
+    fetch("./assets/data/notifications.json")
+    .then(res => res.json())
+    .then(data => setNotificationData(data));
+}
+
+function setNotificationData(data){
+    notifications = data
+    
+    // then set initial values
+    setContext()
+    setCurrentNotification()
+}
+
+function setContext(){
+    $('#dayCurrent').html(numToDay[contexts[currentIndex].dayOfWeek])
+    $('#dayCurrent').css('color', 'white')
+    $('#timeCurrent').html(contexts[currentIndex].timeOfDay)
+    $('#timeCurrent').css('color', 'white')
+    var unlocks = contexts[currentIndex].unlockCount_prev2.toFixed()
+    $('#unlocksCurrent').html(unlocks>=0?unlocks+" times":'unknown')
+    $('#unlocksCurrent').css('color', 'white')
+    var usage =(contexts[currentIndex].phoneUsageTime_prev2/(1000*60)).toFixed(5)
+    $('#usageCurrent').html(usage>=0?usage+" mins":'unknown')
+    $('#usageCurrent').css('color', 'white')
+    var clickCount = contexts[currentIndex].clickCount_prev2.toFixed(0)
+    $('#interactionsCurrent').html(clickCount>=0?clickCount:'unknown')
+    $('#interactionsCurrent').css('color', 'white')
+    var launched =(contexts[currentIndex].uniqueAppsLaunched_prev2).toFixed(0)
+    $('#launchedCurrent').html(launched>=0?launched:'unknown')
+    $('#launchedCurrent').css('color', 'white')
+}
+
+function setCurrentNotification(){
+    n = notifications[currentIndex]
+    $('#appPackageCurrent').html(n.appPackage.replace('com.','').replace('.android.',' '))
+    $('#appPackageCurrent').css('color', 'black')
+    $('#categoryCurrent').html(n.category)
+    $('#categoryCurrent').css('color', 'white')
+    $('#subjectCurrent').html(n.subject)
+    $('#subjectCurrent').css('color', 'white')
+    $('#priorityCurrent').html(n.priority)
+    $('#priorityCurrent').css('color', 'white')
+    $('#ledARGBCurrent').html(n.ledARGB)
+    $('#notificationCard').css('border-color', n.ledARGB)
+    $('#ledARGBCurrent').css('color', 'white')
+    $('#visibilityCurrent').html(n.visibility)
+    $('#visibilityCurrent').css('color', 'white')
+    $('#vibrateCurrent').html(n.vibrate)
+    $('#vibrateCurrent').css('color', 'white')
+    
+}
 
 function setFeatureValues(data){
     for(val of data){
-        addRow(val)
-        // append value to drop down for given feature
+        var option = document.createElement('option');
+        option.innerHTML = val.value;
+        option.setAttribute("style", "color: black;");
+        document.getElementById(val.feature+'Select').appendChild(option);
     }
-}
-
-function addRow(fv) {
-  var option = document.createElement('option');
-
-  option.innerHTML = fv.value;
-  option.setAttribute("style", "color: black;");
-
-  document.getElementById(fv.feature+'Select').appendChild(option);
 }
 
 function setNotification(sel){
     notif_element = sel.id.replace('Select', 'Current')
     notif_value = sel.options[sel.selectedIndex].text
     elem = document.getElementById(notif_element)
-    elem.innerHTML = notif_value
-    elem.setAttribute("style", "color: black;")
+    elem.innerHTML = notif_value.replace('com.','').replace('.android.', ' ')
+    elem.setAttribute("style", "color: white;")
+    if(notif_element=='ledARGBCurrent')
+        $('#notificationCard').css('border-color', notif_value!='unknown'?notif_value:'transparent')
 }
 
 function evaluateNotification(){
     console.log('test notification for open/dismiss')
+    if(!custom){
+        result = contexts[currentIndex].action
+        if(result){
+            $('#openFail').hide()
+            $('#openSuccess').show()
+            $('#resultBackground').css('background', 'green')
+        }
+        else{
+            
+            $('#openFail').show()
+            $('#openSuccess').hide()
+            $('#resultBackground').css('background', 'red')
+        }
+    }
 }
 
-function changeContext(){
-    console.log('move to next context')
+function randomPair(){
+    currentIndex = (Math.random()*contexts.length).toFixed()
+    setContext()
+    setCurrentNotification()
 }
 
 function generateNotification(){
@@ -83,4 +161,5 @@ function generateNotification(){
 // 3. API call to convert prediction back to string values to populate container
 
 // loadModel();
+loadData();
 
