@@ -126,8 +126,7 @@ function setNotification(sel){
 }
 
 function evaluateNotification(){
-    console.log('test notification for open/dismiss')
-    if(!custom){
+    /*if(!custom){
         result = contexts[currentIndex].action
         if(result){
             $('#openFail').hide()
@@ -140,7 +139,7 @@ function evaluateNotification(){
             $('#openSuccess').hide()
             $('#resultBackground').css('background', 'red')
         }
-    }
+    }*/
 }
 
 function randomPair(){
@@ -150,10 +149,81 @@ function randomPair(){
 }
 
 function generateNotification(){
-    console.log('get notification values and pass to api for encoding')
+    encodeContext()
+    /*console.log('get notification values and pass to api for encoding')
     console.log('on return, send to model for evaluation')
     console.log('on evaluation send to api for decoding')
-    console.log('update the ui with generated notifications returned')
+    console.log('update the ui with generated notifications returned')*/
+}
+
+/* Submit encode/decode request */
+function encodeContext() {
+    var demoUrl = "http://localhost:5000/misc/generator/encode";
+    
+    contextObj = {
+        "clickCount_prev2": contexts[currentIndex].clickCount_prev2,
+        "totalSignificantAppLaunchCount_prev2":contexts[currentIndex].totalSignificantAppLaunchCount_prev2,
+        "phoneUsageTime_prev2": contexts[currentIndex].phoneUsageTime_prev2,
+        "unlockCount_prev2": contexts[currentIndex].unlockCount_prev2,
+        "uniqueAppsLaunched_prev2": contexts[currentIndex].uniqueAppsLaunched_prev2,
+        "action": true,
+        "timeAppLastUsed": contexts[currentIndex].timeAppLastUsed,
+        "timeOfDay": contexts[currentIndex].timeOfDay,
+        "dayOfWeek": contexts[currentIndex].dayOfWeek,
+    }
+
+    var formData = JSON.stringify({
+        "context": contextObj         
+    })
+
+    $.ajax ({
+        url: demoUrl,
+        type: "POST",
+        data: formData,
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        crossDomain: true,
+        success: function(data) {
+            // console.log(data["encoded"])
+            makePrediction(data['encoded'])
+        }
+    });
+
+};
+
+function decodePredictions(context, predictions){
+    var demoUrl = "http://localhost:5000/misc/generator/decode";
+    
+    encodedObj = {
+        "encoded_n":predictions,
+        "encoded_c":context
+    }
+
+    var formData = JSON.stringify(encodedObj)
+
+    $.ajax ({
+        url: demoUrl,
+        type: "POST",
+        data: formData,
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        crossDomain: true,
+        success: function(data) {
+            console.log(data)
+        }
+    });
+}
+
+async function makePrediction(encoded){
+    const input = tf.tensor2d(encoded);
+    const result = model.predict(input);
+    // console.log(Array.from(result.dataSync()));
+    console.log(encoded)
+    // var predictions = Array.from(result.dataSync())
+    // const preds = f(xs).dataSync();
+    var predictions = Array.from(result.arraySync())
+    console.log(predictions)
+    decodePredictions(encoded, predictions)
 }
 
 
@@ -164,6 +234,6 @@ function generateNotification(){
 
 // 3. API call to convert prediction back to string values to populate container
 
-// loadModel();
+loadModel();
 loadData();
 
