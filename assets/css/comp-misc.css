@@ -50,6 +50,18 @@ hr {
     display: none !important;
 }
 
+.empushy-notification:hover {
+    cursor: pointer!important;
+    margin-left: 0% !important;
+    margin-right: 0% !important;
+}
+
+.empushy-notification:active {
+    cursor: pointer!important;
+    margin-left: 2% !important;
+    margin-right: 2% !important;
+}
+
 .error {
     color: #9b1427 !important;
 }
