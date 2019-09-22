@@ -230,12 +230,19 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md" >
                                             <div class="row"  style="text-align: center">
                                                 <div class="col-md">
                                                     <div class="btn-group btn-group-sm" role="group" aria-label="...">
                                                         <button class="btn active" type="button" data-toggle="collapse" data-target="#app-view" aria-expanded="false" aria-controls="app-view">App</button>
                                                         <button class="btn" type="button" data-toggle="collapse" data-target="#category-view" aria-expanded="false" aria-controls="category-view">Category</button>
+                                                        <button class="btn" type="button" data-toggle="collapse" data-target="#subject-view" aria-expanded="false" aria-controls="subject-view">Subject</button>
+                                                        <button class="btn" type="button" data-toggle="collapse" data-target="#priority-view" aria-expanded="false" aria-controls="priority-view">Priority</button>
+                                                        <button class="btn" type="button" data-toggle="collapse" data-target="#led-view" aria-expanded="false" aria-controls="led-view">LED</button>
+                                                        <button class="btn" type="button" data-toggle="collapse" data-target="#visibility-view" aria-expanded="false" aria-controls="visibility-view">Visibility</button>
+                                                        <button class="btn" type="button" data-toggle="collapse" data-target="#vibration-view" aria-expanded="false" aria-controls="vibration-view">Vibration</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -243,13 +250,42 @@
                                             <div class="row">
                                                 <div class="col-md">
                                                     <div class="collapse show active" id="app-view">
-                                                        <div class="card card-body" style="color: black; background-image: url(./images/cards_opaque.png) !important; background-repeat: repeat !important;">
-                                                            app viz
+                                                        <div class="card card-body" style="color: black;  background: transparent !important; padding: 5%;">
+                                                            <canvas id="appStackedChart" width="100%" max-height="20"></canvas>
+                                                            <br>
+                                                            <canvas id="appTimeChart" width="100%" max-height="20"></canvas>
                                                         </div>
                                                     </div>
                                                     <div class="collapse" id="category-view">
                                                         <div class="card card-body" style="color: black; background-image: url(./images/cards_opaque.png) !important; background-repeat: repeat !important;">
-                                                            category viz
+                                                            <canvas id="categoryStackedChart" width="100%" max-height="20"></canvas>
+                                                            <br>
+                                                            <canvas id="categoryTimeChart" width="100%" max-height="20"></canvas>
+                                                        </div>
+                                                    </div>
+                                                    <div class="collapse" id="subject-view">
+                                                        <div class="card card-body" style="color: black; background-image: url(./images/cards_opaque.png) !important; background-repeat: repeat !important;">
+                                                            <canvas id="categoryChart" width="100%" max-height="20"></canvas>
+                                                        </div>
+                                                    </div>
+                                                    <div class="collapse" id="priority-view">
+                                                        <div class="card card-body" style="color: black; background-image: url(./images/cards_opaque.png) !important; background-repeat: repeat !important;">
+                                                            <canvas id="categoryChart" width="100%" max-height="20"></canvas>
+                                                        </div>
+                                                    </div>
+                                                    <div class="collapse" id="led-view">
+                                                        <div class="card card-body" style="color: black; background-image: url(./images/cards_opaque.png) !important; background-repeat: repeat !important;">
+                                                            <canvas id="categoryChart" width="100%" max-height="20"></canvas>
+                                                        </div>
+                                                    </div>
+                                                    <div class="collapse" id="visibility-view">
+                                                        <div class="card card-body" style="color: black; background-image: url(./images/cards_opaque.png) !important; background-repeat: repeat !important;">
+                                                            <canvas id="categoryChart" width="100%" max-height="20"></canvas>
+                                                        </div>
+                                                    </div>
+                                                    <div class="collapse" id="vibration-view">
+                                                        <div class="card card-body" style="color: black; background-image: url(./images/cards_opaque.png) !important; background-repeat: repeat !important;">
+                                                            <canvas id="categoryChart" width="100%" max-height="20"></canvas>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -306,23 +342,26 @@
         <!--<div w3-include-html="index_old.html"></div>-->
 
 		<!-- Scripts -->
-			<!--<script src="assets/js/jquery.min.js"></script>-->
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-              integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-              crossorigin="anonymous"></script>
+        <!--<script src="assets/js/jquery.min.js"></script>-->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+          integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+          crossorigin="anonymous"></script>
+
+        <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/1.0.4/jsrender.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/include.js"></script>
+        <script src="assets/js/comp-misc.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+        <script src="assets/js/comp-misc-empushy-generate.js"></script>
+        <script src="assets/js/createCharts.js"></script>
         
-            <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/1.0.4/jsrender.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-            <script src="assets/js/include.js"></script>
-			<script src="assets/js/comp-misc.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
-            <script src="assets/js/comp-misc-empushy-generate.js"></script>
         
         <script>
             
@@ -375,6 +414,7 @@
                 });
               });
         </script>
+        
         
 
 	</body>

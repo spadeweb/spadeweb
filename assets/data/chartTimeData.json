@@ -1,0 +1,7 @@
+{
+    "category":{
+        "uniqueLabels": ["msg", "email"],
+        "earlyMorning": [2, 3],
+        "night": [1, 9]
+    }
+}
