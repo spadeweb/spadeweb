@@ -388,26 +388,30 @@
                 $("#web-push-btn").click(function() {
                   // validate and process form here
                     console.log('web push submitted.')
-                    var name = $("input#basic-url").val();
-                    if (name == "") {
+                    var url = $("input#basic-url").val();
+                    if (url == "") {
                         $("label#url_error").show();
                         $("input#basic-url").focus();
                         return false;
                     }
                     
-                    
-                    
-                    console.log(name);
-                    dataString = "name="+name
-                    //alert (dataString);return false;
-                    /*$.ajax({
+                    var urlData = JSON.stringify({
+                        "url": url         
+                    })
+
+                    $.ajax ({
+                        url: "http://localhost:5000/misc/webpush/generate",
                         type: "POST",
-                        url: "bin/process.php",
-                        data: dataString,
-                        success: function() {
-                          console.log("success")
+                        data: urlData,
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        crossDomain: true,
+                        success: function(data) {
+                            // console.log(data["encoded"])
+                            console.log(data)
                         }
-                    });*/
+                    });
+                    
                     $("input#basic-url").val('');
                     $('.error').hide();
                     return false;
