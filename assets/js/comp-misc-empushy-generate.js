@@ -235,6 +235,68 @@ function appendEmpushyNotifications(notifications){
     //$.tmpl("nTemplate", n).appendTo("#empushy-view");
 }
 
+function parseWebPushNotifications(data){
+    // parse back to notifications
+    var objectList = data.gen
+    for(o in objectList){
+        console.log(o)
+    }
+    
+}
+
+function appendEmpushyWebNotifications(summaries, notifications){
+    var wTemplate = '<div class="row empushy-notification" style="margin: 2%;" onclick="empushyNotification(this)">'+
+                        '<div class="col-md">'+
+                            '<div class="card mb-6" style="18rem; background: transparent!important;">'+
+                                '<div class="card-header" style="background: #9b1427; font-size: smaller;">'+
+                                    '<strong id="appPackage" style="font-size: medium;">{{:appPackage}}</strong>'+
+                                '</div>'+
+                                '<div id="notificationCard" class="card-body" style="color: black; padding: 0.5rem; color:#7d7d7d; font-size:smaller; border-color: #7d7d7d; border-style: solid; border-width: 1px; border-top-style: none;">'+
+                                    '<div class="row" style="font-size:smaller;">'+
+                                        '<div class="col-md">'+
+                                            '<img src="./assets/icons/notification.png" alt="Smiley face" style="padding-right:5%">'+
+                                            '<i id="category">{{:category}}</i>'+
+                                        '</div>'+
+                                        '<div class="col-md-7">'+
+                                            '<img src="./assets/icons/subject.png" alt="Smiley face" style="padding-right:5%">'+
+                                            '<i id="subject">{{:subject}}</i>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<br>'+
+                                    '<div class="row">'+
+                                        '<div class="col-md">'+
+                                            '<img src="./assets/icons/priority.png" alt="Smiley face" style="padding-right:5%">'+
+                                            '<i id="priority">{{:priority}}</i>'+
+                                        '</div>'+
+                                        '<div class="col-md-7">'+
+                                            '<img src="./assets/icons/led.png" alt="Smiley face" style="padding-right:5%">'+
+                                            '<i id="ledARGB">{{:ledARGB}}</i>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<br>'+
+                                    '<div class="row">'+
+                                        '<div class="col-md">'+
+                                            '<img src="./assets/icons/visibility.png" alt="Smiley face"style="padding-right:5%">'+
+                                            '<i id="visibility">{{:visibility}}</i>'+
+                                        '</div>'+
+                                        '<div class="col-md-7">'+
+                                            '<img src="./assets/icons/vibration.png" alt="Smiley face"style="padding-right:5%">'+
+                                            '<i id="vibration">{{:vibration}}</i>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'
+
+    // Store it as a named template
+    $.templates("wTemplate", nTemplate);
+    // Use the template
+    var html = $.templates.wTemplate(notifications);
+    $("#webPushGen-view").append(html)
+    //$.tmpl("nTemplate", n).appendTo("#empushy-view");
+}
+
 /* Submit encode/decode request */
 function encodeContext() {
     var demoUrl = "http://localhost:5000/misc/generator/encode";

@@ -33,22 +33,33 @@
                     <div class="col-8">
                         <div class="tab-content" id="nav-tabContent" style="color:white;">
                             <div class="tab-pane fade show" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-                                Proof-of-concept tool for assisting website developers/owners create personalised push-notifications for their followers. Simply enter your website URL and the WebPush system will extract all text from the website and generate a set of recommended notifications to push.
-                                <br><br>
-                                <form>
-                                    <div class="form-group">
-                                        <label for="basic-url">Your website URL:</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon3">https://</span>
+                                <div class="row">
+                                    <div class="col-md">
+                                        Proof-of-concept tool for assisting website developers/owners create personalised push-notifications for their followers. Simply enter your website URL and the WebPush system will extract all text from the website and generate a set of recommended notifications to push.
+                                        <br><br>
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="basic-url">Your website URL:</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon3">https://</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"
+                                                           placeholder="example.com">
+                                                </div>
+                                                <label class="error" for="basic-rul" id="url_error">This field is required</label>
                                             </div>
-                                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"
-                                                   placeholder="example.com">
-                                        </div>
-                                        <label class="error" for="basic-rul" id="url_error">This field is required</label>
+                                            <button id="web-push-btn" type="submit" class="btn">Submit</button>
+                                        </form>
                                     </div>
-                                    <button id="web-push-btn" type="submit" class="btn">Submit</button>
-                                </form>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <div id="webPushGen-view" style="max-height: 350px; overflow-y: scroll;">
+                                                    
+                                        </div>
+                                    </div>
+                                </div>
                                 
                             </div>
                             
@@ -408,7 +419,10 @@
                         crossDomain: true,
                         success: function(data) {
                             // console.log(data["encoded"])
-                            console.log(data)
+                            parseWebPushNotifications(data)
+                            // console.log(data)
+                            // show the notifications
+                            
                         }
                     });
                     
