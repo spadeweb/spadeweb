@@ -236,20 +236,27 @@ function appendEmpushyNotifications(notifications){
 }
 
 function parseWebPushNotifications(data){
+    
     // parse back to notifications
     var objectList = data.gen
-    for(o in objectList){
-        console.log(o)
+    for(o of objectList){
+        var summary = o.summary
+        var keywords = o.keywords
+        var url = o.url
+        var notification = o.notifications[0]
+        console.log(notification)
+        appendEmpushyWebNotifications(summary, notification)
     }
     
 }
 
-function appendEmpushyWebNotifications(summaries, notifications){
-    var wTemplate = '<div class="row empushy-notification" style="margin: 2%;" onclick="empushyNotification(this)">'+
+function appendEmpushyWebNotifications(summary, notifications){
+    var wTemplate = '<div class="row empushy-notification" style="margin: 2%;" onclick="">'+
                         '<div class="col-md">'+
                             '<div class="card mb-6" style="18rem; background: transparent!important;">'+
                                 '<div class="card-header" style="background: #9b1427; font-size: smaller;">'+
                                     '<strong id="appPackage" style="font-size: medium;">{{:appPackage}}</strong>'+
+                                    '<p>{{:summary}}</p>'+
                                 '</div>'+
                                 '<div id="notificationCard" class="card-body" style="color: black; padding: 0.5rem; color:#7d7d7d; font-size:smaller; border-color: #7d7d7d; border-style: solid; border-width: 1px; border-top-style: none;">'+
                                     '<div class="row" style="font-size:smaller;">'+
@@ -281,20 +288,19 @@ function appendEmpushyWebNotifications(summaries, notifications){
                                         '</div>'+
                                         '<div class="col-md-7">'+
                                             '<img src="./assets/icons/vibration.png" alt="Smiley face"style="padding-right:5%">'+
-                                            '<i id="vibration">{{:vibration}}</i>'+
+                                            '<i id="vibration">{{:vibrate}}</i>'+
                                         '</div>'+
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
                         '</div>'+
                     '</div>'
-
+    notifications.summary = summary
     // Store it as a named template
-    $.templates("wTemplate", nTemplate);
+    $.templates("wTemplate", wTemplate);
     // Use the template
     var html = $.templates.wTemplate(notifications);
     $("#webPushGen-view").append(html)
-    //$.tmpl("nTemplate", n).appendTo("#empushy-view");
 }
 
 /* Submit encode/decode request */

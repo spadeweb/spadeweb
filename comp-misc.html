@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md">
-                                        <div id="webPushGen-view" style="max-height: 350px; overflow-y: scroll;">
+                                        <div id="webPushGen-view" style="max-height: 400px; overflow-y: scroll;">
                                                     
                                         </div>
                                     </div>
@@ -406,9 +406,15 @@
                         return false;
                     }
                     
+                    if(!url.includes('https://') && !url.includes('http://'))
+                        url = 'https://'+url
+                    
                     var urlData = JSON.stringify({
                         "url": url         
                     })
+                    
+                    
+                    $("#webPushGen-view ").empty()  
 
                     $.ajax ({
                         url: "http://localhost:5000/misc/webpush/generate",
